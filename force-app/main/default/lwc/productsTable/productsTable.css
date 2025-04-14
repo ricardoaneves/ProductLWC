@@ -1,0 +1,50 @@
+.image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.product-image {
+    width: 100px;
+    height: auto;
+}
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    padding: 12px;
+    margin: 6px;
+}
+
+.container{
+    position: relative;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.pagination button {
+    padding: 0.4rem 1rem;
+    border: none;
+    background-color: #0070d2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}

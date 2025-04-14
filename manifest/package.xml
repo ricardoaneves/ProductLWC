@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Product2</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Product2.Brand__c</members>
+        <members>Product2.SKU__c</members>
+        <members>Product2.Price__c</members>
+        <members>Product2.Dummy_ID__c</members>
+        <members>Product2.Image__c</members>
+        <members>Product2.Category__c</members>
+        <members>Product2.Favorite__c</members>
+        <members>Product2.Stock__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>productsTable</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>ProductImagesBatch</members>
+        <members>ProductImagesBatchTest</members>
+        <members>ProductsController</members>
+        <members>ProductsControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <version>62.0</version>
+</Package>

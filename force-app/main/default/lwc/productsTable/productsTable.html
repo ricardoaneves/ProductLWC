@@ -1,0 +1,78 @@
+<template>
+    <lightning-card title="Hire me!" icon-name="standard:product">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading products..." size="medium"></lightning-spinner>
+        </template>
+        <ul class="slds-m-around_medium">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-7" style="padding-right:40px;">
+                    <legend class="slds-form-element__legend slds-form-element__label">Filter by Name</legend>
+                    <lightning-input
+                        variant="label-hidden"
+                        type="text"
+                        value={nameSearch}
+                        onchange={handleNameChange}>
+                    </lightning-input><br>
+                    <legend class="slds-form-element__legend slds-form-element__label">Filter by Brand</legend>
+                    <lightning-input
+                        variant="label-hidden"
+                        type="text"
+                        value={brandSearch}
+                        onchange={handleBrandChange}>
+                    </lightning-input><br>
+                    <lightning-checkbox-group
+                        name="categories"
+                        label="Filter by Categories"
+                        options={options}
+                        value={selected}
+                        onchange={handleCategoriesChange}>
+                    </lightning-checkbox-group><br>
+                    <lightning-input 
+                        type="toggle" 
+                        label="Only favorites!"
+                        message-toggle-active=""
+                        message-toggle-inactive=""
+                        onchange={handleFavoritesChange}
+                        checked={onlyFavorites}>
+                    </lightning-input><br>
+                    <span style="font-size: 70%; color: grey;">Stock in the page: {stockPerPage}</span><br>
+                    <span style="font-size: 70%; color: grey;">Price in the page: {pricePerPage}€</span>
+                </div>
+                <div class="slds-col slds-size_5-of-7">
+                    <template for:each={pagedProducts} for:item="product">
+                        <div class="slds-grid slds-wrap slds-grid_vertical-stretch product-card" key={product.id}>
+                            <div class="slds-col slds-size_1-of-7 image-container">
+                                <img src={product.thumbnail} class="product-image" alt={product.title}>
+                            </div>
+                            <div class="slds-col slds-size_5-of-7">
+                                <span style="font-size: 20px; color: royalblue; font-weight: bold;">{product.title}</span>
+                                <span style="font-size: 70%; color: grey"> {product.sku}</span><br>
+                                <template if:true={product.brand}>
+                                    <span style="font-style:italic;">by {product.brand}</span><br>
+                                </template>
+                                <span>PVP: {product.price}€</span><br>
+                                <a style="font-weight:bold; cursor:pointer;" onclick={handleAddToCart} data-price={product.price}>Add to cart</a>
+                            </div>
+                            <div class="slds-col slds-size_1-of-7 container">
+                                <span style="cursor: pointer; font-size: 1.6rem; color: red;position: absolute;top: 0;right: 0;" onclick={toggleFavorite} data-id={product.id}>
+                                    <template if:true={product.favorite}>
+                                        <span>♥</span>
+                                    </template>
+                                    <template if:false={product.favorite}>
+                                        <span>♡</span>
+                                    </template>
+                                </span><br>
+                                <span class="bottom-right">Stock: {product.stock}</span>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="pagination">
+                        <lightning-button label="Previous" onclick={prevPage} disabled={disablePrevious}></lightning-button>
+                        <span>{currentPage}/{totalPages}</span>
+                        <lightning-button label="Next" onclick={nextPage} disabled={disableNext}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </lightning-card>
+</template>
